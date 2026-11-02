@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f6f1">
+  <meta name="description" content="Diseña y organiza tu boda en un espacio visual, intuitivo y personalizable.">
+  <title>Diseña tu boda · Estudio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Diseña tu boda, inicio">
+      <span class="brand-mark" aria-hidden="true">d<span>♥</span></span>
+      <span class="brand-name">diseña <b>tu boda</b><small>ESTUDIO CREATIVO</small></span>
+    </a>
+    <div class="project-title">
+      <span class="eyebrow">PROYECTO</span>
+      <h1>Nuestra celebración <span class="edit-mark" aria-hidden="true">✎</span></h1>
+    </div>
+    <div class="header-actions">
+      <span class="save-status" id="saveStatus" aria-live="polite">Listo para diseñar</span>
+      <button class="button button-quiet" id="btnJson" type="button"><span aria-hidden="true">↓</span> Exportar diseño</button>
+      <button class="button button-primary" id="btnSave" type="button"><span aria-hidden="true">✓</span> Guardar</button>
+      <button class="icon-button" id="btnClear" type="button" aria-label="Empezar de nuevo" title="Empezar de nuevo">↺</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+    <aside class="sidebar" aria-label="Elementos del diseño">
+      <div class="sidebar-heading">
+        <div>
+          <span class="eyebrow">TU ESPACIO</span>
+          <h2>Arma tu escenario</h2>
+        </div>
+        <span class="sparkle" aria-hidden="true">✳</span>
+      </div>
+      <p class="sidebar-intro">Elige el lugar, añade los objetos y arrástralos para acomodarlos en el plano.</p>
+      <button class="suggestion-button" id="btnSuggestions" type="button"><span aria-hidden="true">✦</span> Ver ideas para mi boda</button>
+      <nav class="tabs" id="tabs" aria-label="Categorías"></nav>
+      <div class="catalog-header">
+        <span id="catalogTitle">Lugares</span>
+        <span class="catalog-hint" id="catalogHint">Toca para elegir un lugar</span>
+      </div>
+      <div class="grid" id="grid" aria-live="polite"></div>
+      <section class="palette" aria-labelledby="paletteTitle">
+        <div class="palette-title">
+          <div><span class="eyebrow">TU PALETA</span><h3 id="paletteTitle">Colores del evento</h3></div>
+          <span class="palette-icon" aria-hidden="true">◒</span>
+        </div>
+        <div class="color-controls">
+          <label class="color-choice"><input id="c1" type="color" value="#f4e1e1"><span>Detalle</span></label>
+          <label class="color-choice"><input id="c2" type="color" value="#b76e79"><span>Acento</span></label>
+        </div>
+      </section>
+    </aside>
+
+    <section class="studio" aria-label="Área de diseño">
+      <div class="studio-toolbar">
+        <div class="scene-title">
+          <span class="scene-dot"></span>
+          <div><span class="eyebrow">VISTA DE DISEÑO</span><strong id="venueLabel">Jardín al atardecer</strong></div>
+        </div>
+        <div class="studio-actions">
+          <div class="zoom-controls" role="group" aria-label="Escala del plano">
+            <button type="button" id="zoomOut" aria-label="Reducir escala" title="Reducir escala">−</button>
+            <button type="button" id="zoomReset" aria-label="Restablecer escala" title="Restablecer escala">100%</button>
+            <button type="button" id="zoomIn" aria-label="Aumentar escala" title="Aumentar escala">+</button>
+          </div>
+          <span class="people-count" id="count"><span aria-hidden="true">♧</span> 0 personas</span>
+          <button class="button button-outline" id="btnPng" type="button"><span aria-hidden="true">▧</span> Descargar imagen</button>
+        </div>
+      </div>
+      <div id="stageWrap">
+        <div id="stageSizer">
+          <div id="stage" role="application" aria-label="Plano visual de tu boda. Arrastra el suelo para mover la vista y los elementos para organizarlos.">
+            <div class="scene-caption" aria-hidden="true"><span>VISTA SUPERIOR</span><b>Distribución del evento</b></div>
+            <div class="stage-hint" id="stageHint"><span aria-hidden="true">✦</span> Elige una categoría y toca un objeto para añadirlo al plano</div>
+          </div>
+        </div>
+      </div>
+      <div class="studio-footer">
+        <span>Mueve la vista arrastrando el suelo · arrastra los objetos para organizarlos</span>
+        <button class="text-button" id="btnHelp" type="button">¿Cómo funciona?</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="tools" class="selection-tools" role="toolbar" aria-label="Editar elemento seleccionado">
+    <span class="tool-label" id="selectedItemLabel">Editar elemento</span>
+    <label class="tool-color" title="Cambiar color del objeto seleccionado">
+      <span>Color</span>
+      <input id="itemColor" type="color" value="#f4e1e1" aria-label="Color del objeto seleccionado">
+    </label>
+    <span class="tool-divider"></span>
+    <button type="button" data-a="rot-" aria-label="Girar a la izquierda" title="Girar a la izquierda">↶</button>
+    <button type="button" data-a="rot+" aria-label="Girar a la derecha" title="Girar a la derecha">↷</button>
+    <span class="tool-divider"></span>
+    <button type="button" data-a="small" aria-label="Reducir tamaño" title="Reducir tamaño">−</button>
+    <button type="button" data-a="big" aria-label="Aumentar tamaño" title="Aumentar tamaño">＋</button>
+    <span class="tool-divider"></span>
+    <button type="button" data-a="dup" aria-label="Duplicar elemento" title="Duplicar">▣</button>
+    <button type="button" data-a="front" aria-label="Traer al frente" title="Traer al frente">⇧</button>
+    <button type="button" class="tool-delete" data-a="del" aria-label="Eliminar elemento" title="Eliminar">⌫</button>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <dialog id="helpDialog" class="help-dialog">
+    <button class="dialog-close" id="closeHelp" type="button" aria-label="Cerrar">×</button>
+    <span class="eyebrow">EN TRES PASOS</span>
+    <h2>Diseña a tu manera</h2>
+    <ol>
+      <li><b>Escoge el lugar</b><span>Prueba distintos escenarios hasta encontrar el ideal.</span></li>
+      <li><b>Agrega los detalles</b><span>Mesas, decoración y personas: toca para añadir y arrastra para acomodar.</span></li>
+      <li><b>Guarda y comparte</b><span>Guarda en este navegador o descarga tu diseño como imagen o archivo.</span></li>
+    </ol>
+    <button class="button button-primary dialog-done" id="doneHelp" type="button">¡Entendido!</button>
+  </dialog>
+  <dialog id="suggestionsDialog" class="help-dialog suggestions-dialog">
+    <button class="dialog-close" id="closeSuggestions" type="button" aria-label="Cerrar">×</button>
+    <span class="eyebrow">IDEAS PARA EMPEZAR</span>
+    <h2>Elige una distribución</h2>
+    <p class="suggestions-intro">Cada idea organiza objetos en el plano. Puedes mover, editar o borrar cualquier elemento después.</p>
+    <div class="suggestion-options">
+      <button class="suggestion-option" type="button" data-suggestion="ceremony">
+        <span class="suggestion-icon" aria-hidden="true">♡</span>
+        <span><b>Ceremonia íntima</b><small>Pasillo central, pareja, oficiante y asientos para invitados.</small></span>
+        <span class="suggestion-arrow" aria-hidden="true">→</span>
+      </button>
+      <button class="suggestion-option" type="button" data-suggestion="garden">
+        <span class="suggestion-icon" aria-hidden="true">✿</span>
+        <span><b>Recepción en jardín</b><small>Mesas redondas, pista de baile, bar y arreglos florales.</small></span>
+        <span class="suggestion-arrow" aria-hidden="true">→</span>
+      </button>
+      <button class="suggestion-option" type="button" data-suggestion="dinner">
+        <span class="suggestion-icon" aria-hidden="true">◇</span>
+        <span><b>Cena elegante</b><small>Mesa imperial, rincón de postres, luces y bienvenida.</small></span>
+        <span class="suggestion-arrow" aria-hidden="true">→</span>
+      </button>
+    </div>
+    <p class="suggestion-note">Al aplicar una idea, se reemplazan los objetos que están ahora en el plano.</p>
+  </dialog>
+</body>
+</html>
