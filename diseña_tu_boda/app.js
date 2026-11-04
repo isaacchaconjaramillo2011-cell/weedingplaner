@@ -75,7 +75,7 @@ const stage = document.getElementById("stage");
 const stageSizer = document.getElementById("stageSizer");
 const stageWrap = document.getElementById("stageWrap");
 const tools = document.getElementById("tools");
-const initialState = () => ({venue:"v1", items:[], c1:"#f4e1e1", c2:"#b76e79"});
+const initialState = () => ({venue:"v1", items:[], c1:"#f4e1e1", c2:"#b76e79", name:"Nuestra celebración", guests:[], menu:[]});
 let state = initialState();
 let selected = null;
 let uid = 0;

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="./styles.css">
   <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js" defer></script>
   <script src="./app.js" defer></script>
+  <script src="./planner.js" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -21,9 +22,12 @@
     </a>
     <div class="project-title">
       <span class="eyebrow">PROYECTO</span>
-      <h1>Nuestra celebración <span class="edit-mark" aria-hidden="true">✎</span></h1>
+      <h1><span id="projectName">Nuestra celebración</span> <span class="edit-mark" aria-hidden="true">✎</span></h1>
     </div>
     <div class="header-actions">
+      <button class="button button-outline" id="btnGuests" type="button">👥 Invitados</button>
+      <button class="button button-outline" id="btnVenues" type="button">📍 Lugares</button>
+      <button class="button button-outline" id="btnAdmin" type="button">🔒 Administrador</button>
       <span class="save-status" id="saveStatus" aria-live="polite">Listo para diseñar</span>
       <button class="button button-quiet" id="btnJson" type="button"><span aria-hidden="true">↓</span> Exportar diseño</button>
       <button class="button button-primary" id="btnSave" type="button"><span aria-hidden="true">✓</span> Guardar</button>
@@ -121,6 +125,9 @@
     </ol>
     <button class="button button-primary dialog-done" id="doneHelp" type="button">¡Entendido!</button>
   </dialog>
+  <dialog id="guestsDialog" class="help-dialog wide-dialog"></dialog>
+  <dialog id="venuesDialog" class="help-dialog wide-dialog"></dialog>
+  <dialog id="adminDialog" class="help-dialog wide-dialog"></dialog>
   <dialog id="suggestionsDialog" class="help-dialog suggestions-dialog">
     <button class="dialog-close" id="closeSuggestions" type="button" aria-label="Cerrar">×</button>
     <span class="eyebrow">IDEAS PARA EMPEZAR</span>

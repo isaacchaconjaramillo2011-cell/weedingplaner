@@ -114,6 +114,30 @@ kbd { padding: 3px 5px; border: 1px solid #e4e0d6; border-radius: 3px; backgroun
 .toast.show { transform: translateY(0); opacity: 1; }
 .help-dialog { position: fixed; width: min(450px, calc(100% - 32px)); padding: 34px; border: 1px solid var(--line); border-radius: 12px; color: var(--ink); background: var(--panel); box-shadow: 0 20px 70px #17140f44; }
 .help-dialog::backdrop { background: #27261f66; backdrop-filter: blur(2px); }
+.wide-dialog { width: min(760px, calc(100% - 32px)); max-height: calc(100vh - 48px); overflow-y: auto; }
+.section-title { margin: 24px 0 10px; font: 600 18px "Playfair Display", serif; }
+.list-heading { margin: 14px 0 6px; color: var(--accent); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+.list-summary, .venue-meta { margin: 0 0 10px; color: var(--muted); font-size: 12px; }
+.empty-note { color: var(--muted); font-size: 13px; }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 7px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
+.row .grow, .row input.grow { flex: 1 1 160px; min-width: 0; }
+.row input, .row select { min-height: 36px; padding: 0 9px; border: 1px solid #e2ded4; border-radius: 6px; background: #fff; color: var(--ink); font: inherit; }
+.row input[type="number"] { width: 78px; }
+.row .cell.muted { color: var(--muted); font-size: 12px; }
+.add-row { border-bottom: 0; padding-top: 12px; }
+.row-del { width: 34px; height: 34px; border: 0; border-radius: 6px; background: #f3e4e1; color: #a14a3c; cursor: pointer; }
+.badge { padding: 3px 9px; border-radius: 99px; background: #eee; font-size: 11px; font-weight: 600; }
+.badge.confirmado { background: #dcebd2; color: #3f6b2c; }
+.badge.no-asiste { background: #f3dcd8; color: #a14a3c; }
+.badge.pendiente { background: #f4ecce; color: #84691b; }
+.venue-list { display: grid; gap: 12px; }
+.venue-card { display: flex; gap: 14px; padding: 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+.venue-icon { font-size: 34px; }
+.venue-body h3 { margin: 0 0 4px; font-size: 16px; }
+.venue-body p { margin: 4px 0; font-size: 13px; line-height: 1.5; }
+.venue-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.venue-actions a { text-decoration: none; }
+.wide-dialog > .button { margin-top: 16px; }
 .help-dialog h2 { margin: 7px 0 19px; font: 600 27px "Playfair Display", serif; }
 .help-dialog ol { display: grid; gap: 14px; margin: 0; padding-left: 20px; color: var(--accent); }
 .help-dialog li { padding-left: 4px; }
